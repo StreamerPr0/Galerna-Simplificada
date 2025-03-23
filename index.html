@@ -16,9 +16,21 @@
       height: 100vh;
       padding: 2rem;
     }
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    header img {
+      width: 120px;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+    }
     h1 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
+      text-align: center;
     }
     p {
       font-size: 0.9rem;
@@ -38,14 +50,37 @@
       color: #fff;
       border: none;
       cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+    .whatsapp {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #111;
+    }
+    .whatsapp a {
+      color: #25D366;
+      font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <h1>🎩 Bienvenido a Galerna</h1>
+  <header>
+    <img src="https://streamerpro.es/wp-content/uploads/2023/10/logo-circular-streamer.png" alt="Logo Streamer Pro" />
+    <h1>🎩 Bienvenido a Galerna</h1>
+  </header>
+
   <p>Tu mentor de marketing digital 24/7. Escribe tu duda y abre el asistente para comenzar.</p>
   <input type="text" id="pregunta" placeholder="Escribe tu pregunta para Galerna..." />
   <button onclick="abrirGalerna()">Ir a Galerna</button>
+
+  <div class="whatsapp">
+    ¿Tienes dudas? <a href="https://wa.me/34612361136" target="_blank">Escríbenos por WhatsApp</a>
+  </div>
 
   <script>
     function abrirGalerna() {
