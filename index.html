@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galerna App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    input {
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 1rem;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎩 Bienvenido a Galerna</h1>
+  <p>Tu mentor de marketing digital 24/7. Escribe tu duda y abre el asistente para comenzar.</p>
+  <input type="text" id="pregunta" placeholder="Escribe tu pregunta para Galerna..." />
+  <button onclick="abrirGalerna()">Ir a Galerna</button>
+
+  <script>
+    function abrirGalerna() {
+      const link = "https://chatgpt.com/g/g-677e850ea65c81919eba551d1ad492aa-marketing-digital-streamer-pro-club";
+      window.open(link, "_blank");
+    }
+  </script>
+</body>
+</html>
