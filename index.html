@@ -3,89 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galerna App</title>
+  <title>Galerna - Mentor de Marketing Digital</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9fafb;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 2rem;
+      font-family: 'Arial', sans-serif;
+      background-color: #f2f4f8;
+      color: #111;
+      line-height: 1.6;
     }
     header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 2rem;
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #000;
+      color: #fff;
     }
     header img {
       width: 120px;
+      margin-bottom: 1rem;
       border-radius: 16px;
-      margin-bottom: 1rem;
     }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      text-align: center;
+    header h1 {
+      font-size: 2rem;
+      margin: 0.5rem 0;
     }
-    p {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1.5rem;
-      text-align: center;
+    header p {
+      font-size: 1rem;
+      color: #ccc;
     }
-    input {
-      padding: 0.5rem;
+    .chatbox {
+      background: #fff;
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    .chatbox input {
       width: 100%;
-      max-width: 300px;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       margin-bottom: 1rem;
     }
-    button {
-      padding: 0.6rem 1.2rem;
-      background-color: #000;
+    .chatbox button {
+      background: #0070f3;
       color: #fff;
+      padding: 0.75rem 1.5rem;
       border: none;
+      border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      width: 100%;
     }
-    button:hover {
-      background-color: #333;
-      transform: scale(1.05);
+    .benefits {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
     }
-    .whatsapp {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: #111;
+    .benefits div {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-    .whatsapp a {
-      color: #25D366;
-      font-weight: bold;
+    .cta {
+      text-align: center;
+      margin: 3rem 1rem;
+    }
+    .cta a {
+      background: #25D366;
+      color: #fff;
       text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      display: inline-block;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: #999;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://streamerpro.es/wp-content/uploads/2023/10/logo-circular-streamer.png" alt="Logo Streamer Pro" />
-    <h1>🎩 Bienvenido a Galerna</h1>
+    <img src="streamerpro-logo.jpg" alt="Logo Streamer Pro" />
+    <h1>Tu mentor 24/7 en Marketing Digital</h1>
+    <p>Prueba Galerna y empieza a aplicar estrategias que generan ventas</p>
   </header>
 
-  <p>Tu mentor de marketing digital 24/7. Escribe tu duda y abre el asistente para comenzar.</p>
-  <input type="text" id="pregunta" placeholder="Escribe tu pregunta para Galerna..." />
-  <button onclick="abrirGalerna()">Ir a Galerna</button>
-
-  <div class="whatsapp">
-    ¿Tienes dudas? <a href="https://wa.me/34612361136" target="_blank">Escríbenos por WhatsApp</a>
+  <div class="chatbox">
+    <input type="text" id="pregunta" placeholder="Escribe tu pregunta para Galerna...">
+    <button onclick="responder()">Preguntar a Galerna</button>
+    <div id="respuesta" style="margin-top:1rem;"></div>
   </div>
 
+  <section class="benefits">
+    <div>🚀 Crea estrategias personalizadas al instante</div>
+    <div>📩 Genera emails, guiones de reels y anuncios</div>
+    <div>🔁 Retos, feedback y motivación real</div>
+    <div>👀 Disponible 24/7, sin coste adicional</div>
+  </section>
+
+  <div class="cta">
+    <p>¿Quieres probar Galerna gratis durante 7 días?</p>
+    <a href="https://wa.me/0034681911767" target="_blank">¡Habla con nosotros por WhatsApp!</a>
+  </div>
+
+  <footer>
+    Galerna by Streamer Pro Club © 2025
+  </footer>
+
   <script>
-    function abrirGalerna() {
-      const link = "https://chatgpt.com/g/g-677e850ea65c81919eba551d1ad492aa-marketing-digital-streamer-pro-club";
-      window.open(link, "_blank");
+    function responder() {
+      const pregunta = document.getElementById('pregunta').value;
+      const respuesta = document.getElementById('respuesta');
+      if (pregunta.trim() === '') {
+        respuesta.innerHTML = '<em>Por favor, escribe una pregunta.</em>';
+        return;
+      }
+      respuesta.innerHTML = '<strong>Galerna responde:</strong> ' + 
+        '“Buena pregunta. Si quieres una estrategia que funcione, empieza por definir bien tu público objetivo y luego crea contenido que hable su idioma. 😉”';
     }
   </script>
 </body>
