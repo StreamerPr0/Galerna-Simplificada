@@ -3,132 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galerna - Mentor de Marketing Digital</title>
+  <title>Accede a Galerna</title>
   <style>
     body {
+      font-family: sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #f2f4f8;
-      color: #111;
-      line-height: 1.6;
     }
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: #000;
-      color: #fff;
-    }
-    header img {
-      width: 120px;
-      margin-bottom: 1rem;
-      border-radius: 16px;
-    }
-    header h1 {
-      font-size: 2rem;
-      margin: 0.5rem 0;
-    }
-    header p {
-      font-size: 1rem;
-      color: #ccc;
-    }
-    .chatbox {
-      background: #fff;
-      max-width: 500px;
-      margin: 2rem auto;
+    .login-container {
+      background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    }
-    .chatbox input {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 1rem;
     }
-    .chatbox button {
-      background: #0070f3;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #000;
+      color: white;
       border: none;
       border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
-      width: 100%;
-    }
-    .benefits {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-    .benefits div {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .cta {
-      text-align: center;
-      margin: 3rem 1rem;
-    }
-    .cta a {
-      background: #25D366;
-      color: #fff;
-      text-decoration: none;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      display: inline-block;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.85rem;
-      color: #999;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="streamerpro-logo.jpg" alt="Logo Streamer Pro" />
-    <h1>Tu mentor 24/7 en Marketing Digital</h1>
-    <p>Prueba Galerna y empieza a aplicar estrategias que generan ventas</p>
-  </header>
-
-  <div class="chatbox">
-    <input type="text" id="pregunta" placeholder="Escribe tu pregunta para Galerna...">
-    <button onclick="responder()">Preguntar a Galerna</button>
-    <div id="respuesta" style="margin-top:1rem;"></div>
+  <div class="login-container">
+    <h2>Accede a Galerna</h2>
+    <input type="text" id="nombre" placeholder="Tu nombre" />
+    <input type="email" id="correo" placeholder="Tu email" />
+    <button onclick="entrar()">Entrar</button>
   </div>
-
-  <section class="benefits">
-    <div>🚀 Crea estrategias personalizadas al instante</div>
-    <div>📩 Genera emails, guiones de reels y anuncios</div>
-    <div>🔁 Retos, feedback y motivación real</div>
-    <div>👀 Disponible 24/7, sin coste adicional</div>
-  </section>
-
-  <div class="cta">
-    <p>¿Quieres probar Galerna gratis durante 7 días?</p>
-    <a href="https://wa.me/0034681911767" target="_blank">¡Habla con nosotros por WhatsApp!</a>
-  </div>
-
-  <footer>
-    Galerna by Streamer Pro Club © 2025
-  </footer>
 
   <script>
-    function responder() {
-      const pregunta = document.getElementById('pregunta').value;
-      const respuesta = document.getElementById('respuesta');
-      if (pregunta.trim() === '') {
-        respuesta.innerHTML = '<em>Por favor, escribe una pregunta.</em>';
+    function entrar() {
+      const nombre = document.getElementById('nombre').value;
+      const correo = document.getElementById('correo').value;
+      if (!nombre || !correo) {
+        alert('Por favor, introduce tu nombre y correo.');
         return;
       }
-      respuesta.innerHTML = '<strong>Galerna responde:</strong> ' + 
-        '“Buena pregunta. Si quieres una estrategia que funcione, empieza por definir bien tu público objetivo y luego crea contenido que hable su idioma. 😉”';
+      localStorage.setItem('nombre', nombre);
+      localStorage.setItem('correo', correo);
+      window.location.href = 'chat.html';
     }
   </script>
 </body>

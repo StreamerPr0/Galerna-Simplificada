@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galerna Chat</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background: #000;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    .chat {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    .chat div {
+      margin-bottom: 1rem;
+    }
+    .user {
+      text-align: right;
+      color: #000;
+    }
+    .galerna {
+      text-align: left;
+      color: #0070f3;
+    }
+    .input-area {
+      display: flex;
+      padding: 1rem;
+      border-top: 1px solid #ccc;
+    }
+    .input-area input {
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .input-area button {
+      padding: 0.75rem 1.2rem;
+      background: #000;
+      color: #fff;
+      border: none;
+      margin-left: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Galerna - Tu mentor digital
+  </header>
+  <div class="chat" id="chat">
+    <div class="galerna"><strong>Galerna:</strong> Hola <span id="nombreUsuario"></span>, ¿en qué puedo ayudarte hoy?</div>
+  </div>
+  <div class="input-area">
+    <input type="text" id="mensaje" placeholder="Escribe tu mensaje..." />
+    <button onclick="enviar()">Enviar</button>
+  </div>
+
+  <script>
+    const nombre = localStorage.getItem('nombre');
+    document.getElementById('nombreUsuario').innerText = nombre;
+
+    async function enviar() {
+      const input = document.getElementById('mensaje');
+      const texto = input.value;
+      if (!texto) return;
+
+      const chat = document.getElementById('chat');
+      chat.innerHTML += `<div class='user'><strong>Tú:</strong> ${texto}</div>`;
+      input.value = '';
+
+      const respuestaElem = document.createElement('div');
+      respuestaElem.className = 'galerna';
+      respuestaElem.innerHTML = '<strong>Galerna:</strong> escribiendo...';
+      chat.appendChild(respuestaElem);
+      chat.scrollTop = chat.scrollHeight;
+
+      const respuesta = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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'
+        },
+        body: JSON.stringify({
+          model: "gpt-4",
+          messages: [
+            {{ role: "system", content: "Eres Galerna, un mentor experto en marketing digital del Streamer Pro Club. Ayuda de forma directa, estratégica y con tono cercano." }},
+            {{ role: "user", content: texto }}
+          ]
+        })
+      }).then(res => res.json());
+
+      const respuestaTexto = respuesta.choices?.[0]?.message?.content || 'Hubo un problema. Inténtalo de nuevo.';
+      respuestaElem.innerHTML = `<strong>Galerna:</strong> ${respuestaTexto}`;
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>
